@@ -96,38 +96,42 @@ class Node {
 	
 	public int[][] moveUp(int[][] intArr, int spaceX, int spaceY)
 	{
-		int temp = intArr[spaceX - 1][spaceY];
-		intArr[spaceX - 1][spaceY] = 0;
-		intArr[spaceX][spaceY] = temp;
+		int[][] copy = Arrays.stream(intArr).map(int[]::clone).toArray(int[][]::new);
+		int temp = copy[spaceX - 1][spaceY];
+		copy[spaceX - 1][spaceY] = 0;
+		copy[spaceX][spaceY] = temp;
 		
-		return intArr;
+		return copy;
 	}
 	
 	public int[][] moveDown(int[][] intArr, int spaceX, int spaceY)
 	{
-		int temp = intArr[spaceX + 1][spaceY];
-		intArr[spaceX + 1][spaceY] = 0;
-		intArr[spaceX][spaceY] = temp;
+		int[][] copy = Arrays.stream(intArr).map(int[]::clone).toArray(int[][]::new);
+		int temp = copy[spaceX + 1][spaceY];
+		copy[spaceX + 1][spaceY] = 0;
+		copy[spaceX][spaceY] = temp;
 		
-		return intArr;
+		return copy;
 	}
 	
 	public int[][] moveLeft(int[][] intArr, int spaceX, int spaceY)
 	{
-		int temp = intArr[spaceX][spaceY - 1];
-		intArr[spaceX][spaceY - 1] = 0;
-		intArr[spaceX][spaceY] = temp;
+		int[][] copy = Arrays.stream(intArr).map(int[]::clone).toArray(int[][]::new);
+		int temp = copy[spaceX][spaceY - 1];
+		copy[spaceX][spaceY - 1] = 0;
+		copy[spaceX][spaceY] = temp;
 		
-		return intArr;
+		return copy;
 	}
 	
 	public int[][] moveRight(int[][] intArr, int spaceX, int spaceY)
 	{
-		int temp = intArr[spaceX][spaceY + 1];
-		intArr[spaceX][spaceY + 1] = 0;
-		intArr[spaceX][spaceY] = temp;
+		int[][] copy = Arrays.stream(intArr).map(int[]::clone).toArray(int[][]::new);
+		int temp = copy[spaceX][spaceY + 1];
+		copy[spaceX][spaceY + 1] = 0;
+		copy[spaceX][spaceY] = temp;
 		
-		return intArr;
+		return copy;
 	}
 	
 	public ArrayList<Node> expand(int[][] goal) {
