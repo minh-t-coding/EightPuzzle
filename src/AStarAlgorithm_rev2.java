@@ -299,7 +299,7 @@ public class AStarAlgorithm_rev2
 				System.out.println();
 				
 				// Print number of required moves
-				System.out.println("Given the selected heuristic, the solution required " + (currNode.getGVal() + 1) + " moves.");
+				System.out.println("Given the selected heuristic, the solution required " + (currNode.getGVal()) + " moves.");
 				// Print number of explored nodes
 				System.out.println("The A* explored " + numNodesExplored + " nodes to find the solution");
                 return;
