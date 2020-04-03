@@ -346,6 +346,22 @@ public class AStarAlgorithm_rev2
 	    }
 	    return true;
 	}
+
+	public static int parity(int[] intArr) {
+		int inv = 0;
+		for (int i = 0; i < intArr.length; i++) {
+			for (int j = i-1; j >= 0; j--) {
+				if (intArr[j] <= intArr[j + 1]) {
+					break;
+				}
+				int temp = intArr[j+1];
+				intArr[j+1] = intArr[j];
+				intArr[j] = temp;
+				inv++;
+			}
+		}
+		return inv % 2;
+	}
 	
 	public static int[][] linesTo2dIntArr(String l1, String l2, String l3) {
 		String[] l1Tokens = l1.split(" ");
@@ -383,6 +399,27 @@ public class AStarAlgorithm_rev2
 		}
 		return ans;
 	}
+
+	public static int[] flatten2dArr(int[][] intArr) {
+		ArrayList<Integer> flatArr = new ArrayList<Integer>();
+
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (intArr[i][j] != 0) {
+					flatArr.add(intArr[i][j]);
+				}
+			}
+		}
+
+		return flatArr.stream().mapToInt(i -> i).toArray();
+	}
+
+	public static boolean isSolvable(int[][] start, int[][] goal) {
+		if (parity(flatten2dArr(start)) == parity(flatten2dArr(goal))) {
+			return true;
+		}
+		return false;
+	}
 	
 	public static void main(String[] args) {
 		int[][] start = new int[3][3];
@@ -413,6 +450,11 @@ public class AStarAlgorithm_rev2
 		
 		Node startNode = new Node(start, goal, heuristic, spaceIndices[0], spaceIndices[1]);
 		
-		search(startNode, goal);
+		if (isSolvable(start, goal)) {
+			search(startNode, goal);
+		} else {
+			System.out.println("For the above combination of the initial/goal states, there is no solution.");
+			System.exit(0);
+		}
 	}
 }
